@@ -1,0 +1,12 @@
+version: '3'
+services:
+  zookeeper:
+    build:
+     context: dockerfiles
+     dockerfile: Dockerfile
+    image: mvilche/apache-zookeeper:3.5.5-alpine3.9
+    networks:
+     - integracion
+
+networks:
+  integracion:
