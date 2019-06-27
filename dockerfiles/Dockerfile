@@ -5,9 +5,9 @@ RUN apk add --update --no-cache gawk shadow openjdk8 bash curl && mkdir -p /opt/
 RUN curl $ZOOKEEPER_URL --output /tmp/zookeeper.tgz && tar zxvf /tmp/zookeeper.tgz --strip-components 1 -C /opt/zookeeper && \
 touch /opt/zookeeper/conf/zoo.cfg && rm -rf /tmp/zookeeper.tgz
 COPY run.sh /usr/bin/run.sh
-RUN adduser -D kafka && usermod -aG root kafka && chown -R kafka:0 /opt /home/kafka && chmod -R 0775 /opt /home/kafka
-USER kafka
+RUN adduser -D app && usermod -aG root app && chown -R app:0 /opt /home/app && chmod -R 0775 /opt /home/app
+USER app
 EXPOSE 2181
-ENV HOME /home/kafka
+ENV HOME /home/app
 ENTRYPOINT ["/usr/bin/run.sh"]
 CMD ["/opt/zookeeper/conf/zoo.cfg"]
